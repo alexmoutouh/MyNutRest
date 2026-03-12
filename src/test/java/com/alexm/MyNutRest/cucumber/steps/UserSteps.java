@@ -9,7 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
-import com.alexm.MyNutRest.domain.service.MyNutService;
+import com.alexm.MyNutRest.domain.service.MyNutServiceImpl;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;
@@ -31,7 +31,7 @@ public class UserSteps {
 	private MockMvc mockMvc;
 
 	@Autowired
-	private MyNutService myNutService;
+	private MyNutServiceImpl myNutServiceImpl;
 
 	private final ScenarioContext context;
 
@@ -66,13 +66,13 @@ public class UserSteps {
 		if (userId != null && currentFirstname != null) {
 			NutUserResponseDomain response = new NutUserResponseDomain(userId, currentFirstname, currentLastname, currentGender,
 					Instant.parse(currentBirthdate), Collections.emptyList());
-			when(myNutService.findUserById(userId)).thenReturn(response);
+			when(myNutServiceImpl.findUserById(userId)).thenReturn(response);
 		}
 	}
 
 	@Étantdonné("aucun utilisateur avec l'id {long}")
 	public void noUserWithId(Long id) {
-		when(myNutService.findUserById(id)).thenReturn(null);
+		when(myNutServiceImpl.findUserById(id)).thenReturn(null);
 	}
 
 	@Étantdonné("des utilisateurs avec le nom de famille {string}")
@@ -81,12 +81,12 @@ public class UserSteps {
 				Collections.emptyList());
 		NutUserResponseDomain user2 = new NutUserResponseDomain(2L, "Bob", lastname, "M", Instant.parse("1985-03-20T00:00:00Z"),
 				Collections.emptyList());
-		when(myNutService.findUsersByLastName(lastname)).thenReturn(List.of(user1, user2));
+		when(myNutServiceImpl.findUsersByLastName(lastname)).thenReturn(List.of(user1, user2));
 	}
 
 	@Étantdonné("aucun utilisateur avec le nom de famille {string}")
 	public void noUserWithLastName(String lastname) {
-		when(myNutService.findUsersByLastName(lastname)).thenReturn(Collections.emptyList());
+		when(myNutServiceImpl.findUsersByLastName(lastname)).thenReturn(Collections.emptyList());
 	}
 
 	@Étantdonné("un nouvel utilisateur avec le prénom {string}")
@@ -99,7 +99,7 @@ public class UserSteps {
 		List<NutUserResponseDomain> responses = List.of(
 				new NutUserResponseDomain(1L, "Alice", "Dupont", "F", Instant.parse("1990-05-15T00:00:00Z"), Collections.emptyList()),
 				new NutUserResponseDomain(2L, "Bob", "Martin", "M", Instant.parse("1985-03-20T00:00:00Z"), Collections.emptyList()));
-		when(myNutService.registerNewUsers(any())).thenReturn(responses);
+		when(myNutServiceImpl.registerNewUsers(any())).thenReturn(responses);
 	}
 
 	@Quand("je recherche l'utilisateur avec l'id {long}")
@@ -118,7 +118,7 @@ public class UserSteps {
 	public void iRegisterThisUser() throws Exception {
 		NutUserResponseDomain response = new NutUserResponseDomain(1L, currentFirstname, currentLastname, currentGender,
 				Instant.parse(currentBirthdate), Collections.emptyList());
-		when(myNutService.registerNewUser(any(NutUserDomain.class))).thenReturn(response);
+		when(myNutServiceImpl.registerNewUser(any(NutUserDomain.class))).thenReturn(response);
 
 		String json = String.format("""
 				{"firstname":"%s","lastname":"%s","gender":"%s","birthdate":"%s"}

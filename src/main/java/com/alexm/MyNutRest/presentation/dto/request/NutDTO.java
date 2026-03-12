@@ -1,11 +1,8 @@
-package com.alexm.MyNutRest.domain.model;
+package com.alexm.MyNutRest.presentation.dto.request;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
-public record NutResponseDomain(
-		Long id,
-		Instant instant,
+public record NutDTO(
 		BigDecimal kcal,
 		BigDecimal fat,
 		BigDecimal saturatedFattyAcids,

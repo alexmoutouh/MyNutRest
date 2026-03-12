@@ -2,8 +2,8 @@ package com.alexm.MyNutRest.presentation.mapper;
 
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
-import com.alexm.MyNutRest.presentation.dto.NutUserResponseDTO;
-import com.alexm.MyNutRest.presentation.dto.UserDTO;
+import com.alexm.MyNutRest.presentation.dto.request.UserDTO;
+import com.alexm.MyNutRest.presentation.dto.response.NutUserResponseDTO;
 
 public class NutUserDTOMapper {
 
