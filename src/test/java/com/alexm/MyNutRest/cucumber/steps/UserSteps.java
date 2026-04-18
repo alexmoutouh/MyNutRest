@@ -1,5 +1,20 @@
 package com.alexm.MyNutRest.cucumber.steps;
 
+import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.alexm.MyNutRest.domain.model.NutUserDomain;
+import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
+import com.alexm.MyNutRest.domain.service.MyNutService;
+import io.cucumber.java.fr.Alors;
+import io.cucumber.java.fr.Et;
+import io.cucumber.java.fr.Quand;
+import io.cucumber.java.fr.Étantdonné;
+
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -9,24 +24,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-import java.time.Instant;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-
-import com.alexm.MyNutRest.domain.model.NutUserDomain;
-import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
-import com.alexm.MyNutRest.domain.service.MyNutService;
-
-import io.cucumber.java.fr.Alors;
-import io.cucumber.java.fr.Et;
-import io.cucumber.java.fr.Quand;
-import io.cucumber.java.fr.Étantdonné;
 
 public class UserSteps {
 
@@ -67,20 +64,23 @@ public class UserSteps {
 		this.currentBirthdate = birthdate;
 		Long userId = context.getCurrentUserId();
 		if (userId != null && currentFirstname != null) {
-			NutUserResponseDomain response = new NutUserResponseDomain(userId, currentFirstname, currentLastname, currentGender, Instant.parse(currentBirthdate), Collections.emptyList());
-			when(myNutService.findUserById(userId)).thenReturn(Optional.of(response));
+			NutUserResponseDomain response = new NutUserResponseDomain(userId, currentFirstname, currentLastname, currentGender,
+					Instant.parse(currentBirthdate), Collections.emptyList());
+			when(myNutService.findUserById(userId)).thenReturn(response);
 		}
 	}
 
 	@Étantdonné("aucun utilisateur avec l'id {long}")
 	public void noUserWithId(Long id) {
-		when(myNutService.findUserById(id)).thenReturn(Optional.empty());
+		when(myNutService.findUserById(id)).thenReturn(null);
 	}
 
 	@Étantdonné("des utilisateurs avec le nom de famille {string}")
 	public void usersWithLastName(String lastname) {
-		NutUserResponseDomain user1 = new NutUserResponseDomain(1L, "Alice", lastname, "F", Instant.parse("1990-05-15T00:00:00Z"), Collections.emptyList());
-		NutUserResponseDomain user2 = new NutUserResponseDomain(2L, "Bob", lastname, "M", Instant.parse("1985-03-20T00:00:00Z"), Collections.emptyList());
+		NutUserResponseDomain user1 = new NutUserResponseDomain(1L, "Alice", lastname, "F", Instant.parse("1990-05-15T00:00:00Z"),
+				Collections.emptyList());
+		NutUserResponseDomain user2 = new NutUserResponseDomain(2L, "Bob", lastname, "M", Instant.parse("1985-03-20T00:00:00Z"),
+				Collections.emptyList());
 		when(myNutService.findUsersByLastName(lastname)).thenReturn(List.of(user1, user2));
 	}
 
@@ -116,7 +116,8 @@ public class UserSteps {
 
 	@Quand("j'enregistre cet utilisateur")
 	public void iRegisterThisUser() throws Exception {
-		NutUserResponseDomain response = new NutUserResponseDomain(1L, currentFirstname, currentLastname, currentGender, Instant.parse(currentBirthdate), Collections.emptyList());
+		NutUserResponseDomain response = new NutUserResponseDomain(1L, currentFirstname, currentLastname, currentGender,
+				Instant.parse(currentBirthdate), Collections.emptyList());
 		when(myNutService.registerNewUser(any(NutUserDomain.class))).thenReturn(response);
 
 		String json = String.format("""

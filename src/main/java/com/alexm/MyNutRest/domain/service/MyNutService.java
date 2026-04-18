@@ -2,7 +2,6 @@ package com.alexm.MyNutRest.domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.ai.tool.annotation.ToolParam;
 import org.springframework.stereotype.Service;
@@ -47,9 +46,10 @@ public class MyNutService {
 		return nutUserResponsesDomain;
 	}
 
-	@Tool(description = "Recherche un utilisateur par son identifiant unique")
-	public Optional<NutUserResponseDomain> findUserById(@ToolParam(description = "Identifiant unique de l'utilisateur") Long userId) {
-		return userRepository.findById(userId).map(NutUserDomainMapper::toResponseDomain);
+	@Tool(description = "Recherche un utilisateur par son identifiant unique. "
+			+ "Toutes les dates retournées sont des timestamp UNIX en secondes. Retourne les informations de date au format humain.")
+	public NutUserResponseDomain findUserById(@ToolParam(description = "Identifiant unique de l'utilisateur") Long userId) {
+		return userRepository.findById(userId).map(NutUserDomainMapper::toResponseDomain).orElse(null);
 	}
 
 	@Tool(description = "Recherche des utilisateurs par leur nom de famille")

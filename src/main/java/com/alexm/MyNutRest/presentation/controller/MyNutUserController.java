@@ -32,7 +32,10 @@ public class MyNutUserController {
 
 	@GetMapping(path = "user/id/{user-id}")
 	public Optional<NutUserResponseDTO> findUserById(@PathVariable(name = "user-id") Long userId) {
-		return myNutService.findUserById(userId).map(NutUserDTOMapper::toResponseDTO);
+		if (myNutService.findUserById(userId) == null) {
+			return Optional.empty();
+		}
+		return Optional.of(NutUserDTOMapper.toResponseDTO(myNutService.findUserById(userId)));
 	}
 
 	@GetMapping(path = "user/lastname/{user-lastname}")
