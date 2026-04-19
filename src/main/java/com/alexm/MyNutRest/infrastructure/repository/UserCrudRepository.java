@@ -5,6 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.alexm.MyNutRest.infrastructure.entity.NutUser;
 
-public interface UserRepository extends CrudRepository<NutUser, Long> {
+public interface UserCrudRepository extends CrudRepository<NutUser, Long> {
+
 	List<NutUser> findByLastname(String lastname);
 }

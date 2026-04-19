@@ -5,8 +5,8 @@ import java.time.Instant;
 
 import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
-import com.alexm.MyNutRest.presentation.dto.NutDTO;
-import com.alexm.MyNutRest.presentation.dto.NutResponseDTO;
+import com.alexm.MyNutRest.presentation.dto.request.NutDTO;
+import com.alexm.MyNutRest.presentation.dto.response.NutResponseDTO;
 import com.alexm.MyNutRest.presentation.mapper.NutDTOMapper;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;

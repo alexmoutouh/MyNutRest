@@ -8,7 +8,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
-import com.alexm.MyNutRest.domain.service.MyNutService;
+import com.alexm.MyNutRest.domain.service.MyNutServiceImpl;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;
@@ -31,7 +31,7 @@ public class NutSteps {
 	private MockMvc mockMvc;
 
 	@Autowired
-	private MyNutService myNutService;
+	private MyNutServiceImpl myNutServiceImpl;
 
 	private final ScenarioContext context;
 	private Exception caughtException;
@@ -54,7 +54,7 @@ public class NutSteps {
 	@Étantdonné("un utilisateur inexistant avec l'id {long}")
 	public void aNonExistingUserWithId(Long id) {
 		nonExistingUser = true;
-		when(myNutService.addNutToUser(eq(id), any(NutDomain.class)))
+		when(myNutServiceImpl.addNutToUser(eq(id), any(NutDomain.class)))
 				.thenThrow(new RuntimeException("User not found with id: " + id));
 	}
 
@@ -66,7 +66,7 @@ public class NutSteps {
 					new BigDecimal("500"), new BigDecimal("20.0"), new BigDecimal("5.0"),
 					new BigDecimal("60.0"), new BigDecimal("10.0"), new BigDecimal("8.0"),
 					new BigDecimal("25.0"), new BigDecimal("1.5"));
-			when(myNutService.addNutToUser(eq(userId), any(NutDomain.class))).thenReturn(response);
+			when(myNutServiceImpl.addNutToUser(eq(userId), any(NutDomain.class))).thenReturn(response);
 		}
 	}
 

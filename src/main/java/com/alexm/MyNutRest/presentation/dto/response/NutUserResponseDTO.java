@@ -1,4 +1,4 @@
-package com.alexm.MyNutRest.presentation.dto;
+package com.alexm.MyNutRest.presentation.dto.response;
 
 import java.time.Instant;
 import java.util.List;
