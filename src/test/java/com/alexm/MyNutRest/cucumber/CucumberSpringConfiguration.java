@@ -6,12 +6,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
+import com.alexm.MyNutRest.domain.service.MyFitServiceImpl;
 import com.alexm.MyNutRest.domain.service.MyNutServiceImpl;
-import com.alexm.MyNutRest.presentation.controller.MyNutUserController;
+import com.alexm.MyNutRest.presentation.controller.MyFitController;
+import com.alexm.MyNutRest.presentation.controller.MyNutController;
 import io.cucumber.spring.CucumberContextConfiguration;
 
 @CucumberContextConfiguration
-@WebMvcTest(MyNutUserController.class)
+@WebMvcTest({MyNutController.class, MyFitController.class})
 @ActiveProfiles("test")
 @ComponentScan("com.alexm.MyNutRest.cucumber")
 public class CucumberSpringConfiguration {
@@ -20,5 +22,11 @@ public class CucumberSpringConfiguration {
 	MyNutServiceImpl myNutServiceImpl;
 
 	@MockitoBean
-	ToolCallbackProvider toolCallbackProvider;
+	MyFitServiceImpl myFitServiceImpl;
+
+	@MockitoBean
+	ToolCallbackProvider myNutTools;
+
+	@MockitoBean
+	ToolCallbackProvider myFitTools;
 }

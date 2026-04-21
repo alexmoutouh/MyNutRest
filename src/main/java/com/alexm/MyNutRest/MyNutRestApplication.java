@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.alexm.MyNutRest.domain.service.MyFitService;
 import com.alexm.MyNutRest.domain.service.MyNutService;
 
 @SpringBootApplication
@@ -18,5 +19,10 @@ public class MyNutRestApplication {
 	@Bean
 	public ToolCallbackProvider myNutTools(MyNutService myNutService) {
 		return MethodToolCallbackProvider.builder().toolObjects(myNutService).build();
+	}
+
+	@Bean
+	public ToolCallbackProvider myFitTools(MyFitService myFitService) {
+		return MethodToolCallbackProvider.builder().toolObjects(myFitService).build();
 	}
 }

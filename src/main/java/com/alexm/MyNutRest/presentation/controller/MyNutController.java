@@ -26,7 +26,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping(path = "my-nut/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
-public class MyNutUserController {
+public class MyNutController {
 
 	private final MyNutService myNutService;
 
