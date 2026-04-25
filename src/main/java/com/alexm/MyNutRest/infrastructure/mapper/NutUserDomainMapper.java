@@ -1,4 +1,4 @@
-package com.alexm.MyNutRest.domain.mapper;
+package com.alexm.MyNutRest.infrastructure.mapper;
 
 import java.time.Instant;
 import java.util.Collections;

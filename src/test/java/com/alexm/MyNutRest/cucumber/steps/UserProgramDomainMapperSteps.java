@@ -2,11 +2,11 @@ package com.alexm.MyNutRest.cucumber.steps;
 
 import java.time.LocalDate;
 
-import com.alexm.MyNutRest.domain.mapper.UserProgramDomainMapper;
 import com.alexm.MyNutRest.domain.model.UserProgramDomain;
 import com.alexm.MyNutRest.domain.model.UserProgramResponseDomain;
 import com.alexm.MyNutRest.infrastructure.entity.UserProgram;
 import com.alexm.MyNutRest.infrastructure.entity.UserProgramId;
+import com.alexm.MyNutRest.infrastructure.mapper.UserProgramDomainMapper;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;

@@ -1,4 +1,4 @@
-package com.alexm.MyNutRest.domain.mapper;
+package com.alexm.MyNutRest.infrastructure.mapper;
 
 import com.alexm.MyNutRest.domain.model.ExerciseDomain;
 import com.alexm.MyNutRest.domain.model.ExerciseResponseDomain;

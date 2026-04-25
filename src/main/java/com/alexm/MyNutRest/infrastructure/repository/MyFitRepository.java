@@ -2,11 +2,6 @@ package com.alexm.MyNutRest.infrastructure.repository;
 
 import org.springframework.stereotype.Repository;
 
-import com.alexm.MyNutRest.domain.mapper.ExerciseDomainMapper;
-import com.alexm.MyNutRest.domain.mapper.ProgramDomainMapper;
-import com.alexm.MyNutRest.domain.mapper.UserProgramDomainMapper;
-import com.alexm.MyNutRest.domain.mapper.WorkoutDomainMapper;
-import com.alexm.MyNutRest.domain.mapper.WorkoutExerciseDomainMapper;
 import com.alexm.MyNutRest.domain.model.ExerciseDomain;
 import com.alexm.MyNutRest.domain.model.ExerciseResponseDomain;
 import com.alexm.MyNutRest.domain.model.ProgramDomain;
@@ -23,6 +18,11 @@ import com.alexm.MyNutRest.infrastructure.entity.Program;
 import com.alexm.MyNutRest.infrastructure.entity.UserProgram;
 import com.alexm.MyNutRest.infrastructure.entity.Workout;
 import com.alexm.MyNutRest.infrastructure.entity.WorkoutExercise;
+import com.alexm.MyNutRest.infrastructure.mapper.ExerciseDomainMapper;
+import com.alexm.MyNutRest.infrastructure.mapper.ProgramDomainMapper;
+import com.alexm.MyNutRest.infrastructure.mapper.UserProgramDomainMapper;
+import com.alexm.MyNutRest.infrastructure.mapper.WorkoutDomainMapper;
+import com.alexm.MyNutRest.infrastructure.mapper.WorkoutExerciseDomainMapper;
 import lombok.AllArgsConstructor;
 
 @Repository
@@ -58,7 +58,8 @@ public class MyFitRepository implements MyFitPort {
 	}
 
 	@Override
-	public WorkoutExerciseResponseDomain saveWorkoutExercise(Long workoutId, Long exerciseId, WorkoutExerciseDomain workoutExerciseDomain) {
+	public WorkoutExerciseResponseDomain saveWorkoutExercise(Long workoutId, Long exerciseId,
+			WorkoutExerciseDomain workoutExerciseDomain) {
 		Workout workout = workoutCrudRepository.findById(workoutId)
 				.orElseThrow(() -> new RuntimeException("Workout not found with id: " + workoutId));
 		Exercise exercise = exerciseCrudRepository.findById(exerciseId)

@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
-import com.alexm.MyNutRest.domain.mapper.NutUserDomainMapper;
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
 import com.alexm.MyNutRest.infrastructure.entity.Nut;
 import com.alexm.MyNutRest.infrastructure.entity.NutUser;
+import com.alexm.MyNutRest.infrastructure.mapper.NutUserDomainMapper;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;

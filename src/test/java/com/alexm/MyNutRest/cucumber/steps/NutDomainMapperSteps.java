@@ -3,10 +3,10 @@ package com.alexm.MyNutRest.cucumber.steps;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-import com.alexm.MyNutRest.domain.mapper.NutDomainMapper;
 import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
 import com.alexm.MyNutRest.infrastructure.entity.Nut;
+import com.alexm.MyNutRest.infrastructure.mapper.NutDomainMapper;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;

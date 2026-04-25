@@ -1,9 +1,9 @@
 package com.alexm.MyNutRest.cucumber.steps;
 
-import com.alexm.MyNutRest.domain.mapper.ExerciseDomainMapper;
 import com.alexm.MyNutRest.domain.model.ExerciseDomain;
 import com.alexm.MyNutRest.domain.model.ExerciseResponseDomain;
 import com.alexm.MyNutRest.infrastructure.entity.Exercise;
+import com.alexm.MyNutRest.infrastructure.mapper.ExerciseDomainMapper;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;

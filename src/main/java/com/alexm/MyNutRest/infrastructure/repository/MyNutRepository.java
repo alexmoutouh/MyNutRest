@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
-import com.alexm.MyNutRest.domain.mapper.NutDomainMapper;
-import com.alexm.MyNutRest.domain.mapper.NutUserDomainMapper;
 import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
 import com.alexm.MyNutRest.infrastructure.entity.Nut;
 import com.alexm.MyNutRest.infrastructure.entity.NutUser;
+import com.alexm.MyNutRest.infrastructure.mapper.NutDomainMapper;
+import com.alexm.MyNutRest.infrastructure.mapper.NutUserDomainMapper;
 import lombok.AllArgsConstructor;
 
 @Repository
@@ -54,7 +54,7 @@ public class MyNutRepository implements MyNutPort {
 	}
 
 	@Override
-	public List<NutUser> findByLastname(String lastName) {
-		return userCrudRepository.findByLastname(lastName);
+	public List<NutUserResponseDomain> findByLastname(String lastName) {
+		return userCrudRepository.findByLastname(lastName).stream().map(NutUserDomainMapper::toResponseDomain).toList();
 	}
 }

@@ -3,7 +3,6 @@ package com.alexm.MyNutRest.domain.service;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-import com.alexm.MyNutRest.domain.mapper.NutUserDomainMapper;
 import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
@@ -34,7 +33,7 @@ public class MyNutServiceImpl implements MyNutService {
 
 	@Override
 	public List<NutUserResponseDomain> findUsersByLastName(String lastName) {
-		return myNutPort.findByLastname(lastName).stream().map(NutUserDomainMapper::toResponseDomain).toList();
+		return myNutPort.findByLastname(lastName);
 	}
 
 	@Override

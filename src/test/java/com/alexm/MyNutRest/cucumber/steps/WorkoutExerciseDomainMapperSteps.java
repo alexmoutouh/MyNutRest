@@ -1,10 +1,10 @@
 package com.alexm.MyNutRest.cucumber.steps;
 
-import com.alexm.MyNutRest.domain.mapper.WorkoutExerciseDomainMapper;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseResponseDomain;
 import com.alexm.MyNutRest.infrastructure.entity.WorkoutExercise;
 import com.alexm.MyNutRest.infrastructure.entity.WorkoutExerciseId;
+import com.alexm.MyNutRest.infrastructure.mapper.WorkoutExerciseDomainMapper;
 import io.cucumber.java.fr.Alors;
 import io.cucumber.java.fr.Et;
 import io.cucumber.java.fr.Quand;
