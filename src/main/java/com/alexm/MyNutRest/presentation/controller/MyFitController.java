@@ -17,7 +17,7 @@ import com.alexm.MyNutRest.domain.model.WorkoutDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseResponseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutResponseDomain;
-import com.alexm.MyNutRest.domain.service.MyFitService;
+import com.alexm.MyNutRest.domain.port.MyFitService;
 import com.alexm.MyNutRest.presentation.dto.request.ExerciseDTO;
 import com.alexm.MyNutRest.presentation.dto.request.ProgramDTO;
 import com.alexm.MyNutRest.presentation.dto.request.UserProgramDTO;
@@ -71,7 +71,8 @@ public class MyFitController {
 			@PathVariable(name = "exercise-id") Long exerciseId,
 			@RequestBody WorkoutExerciseDTO request) {
 		WorkoutExerciseDomain workoutExerciseDomain = WorkoutExerciseDTOMapper.toDomain(request);
-		WorkoutExerciseResponseDomain workoutExerciseResponseDomain = myFitService.addExerciseToWorkout(workoutId, exerciseId, workoutExerciseDomain);
+		WorkoutExerciseResponseDomain workoutExerciseResponseDomain = myFitService.addExerciseToWorkout(workoutId, exerciseId,
+				workoutExerciseDomain);
 		return WorkoutExerciseDTOMapper.toResponseDTO(workoutExerciseResponseDomain);
 	}
 

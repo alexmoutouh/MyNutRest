@@ -12,7 +12,8 @@ import com.alexm.MyNutRest.domain.model.WorkoutDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseResponseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutResponseDomain;
-import com.alexm.MyNutRest.infrastructure.repository.MyFitPort;
+import com.alexm.MyNutRest.domain.port.MyFitPort;
+import com.alexm.MyNutRest.domain.port.MyFitService;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -37,7 +38,8 @@ public class MyFitServiceImpl implements MyFitService {
 	}
 
 	@Override
-	public WorkoutExerciseResponseDomain addExerciseToWorkout(Long workoutId, Long exerciseId, WorkoutExerciseDomain workoutExerciseDomain) {
+	public WorkoutExerciseResponseDomain addExerciseToWorkout(Long workoutId, Long exerciseId,
+			WorkoutExerciseDomain workoutExerciseDomain) {
 		return myFitPort.saveWorkoutExercise(workoutId, exerciseId, workoutExerciseDomain);
 	}
 

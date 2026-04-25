@@ -1,4 +1,4 @@
-package com.alexm.MyNutRest.domain.service;
+package com.alexm.MyNutRest.domain.port;
 
 import java.util.List;
 import org.springframework.ai.tool.annotation.Tool;

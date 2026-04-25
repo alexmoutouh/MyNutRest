@@ -6,8 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.alexm.MyNutRest.domain.service.MyFitService;
-import com.alexm.MyNutRest.domain.service.MyNutService;
+import com.alexm.MyNutRest.domain.port.MyFitService;
+import com.alexm.MyNutRest.domain.port.MyNutService;
 
 @SpringBootApplication
 public class MyNutRestApplication {

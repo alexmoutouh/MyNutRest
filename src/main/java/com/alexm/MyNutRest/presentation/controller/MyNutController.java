@@ -14,7 +14,7 @@ import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
-import com.alexm.MyNutRest.domain.service.MyNutService;
+import com.alexm.MyNutRest.domain.port.MyNutService;
 import com.alexm.MyNutRest.presentation.dto.request.NutDTO;
 import com.alexm.MyNutRest.presentation.dto.request.UserDTO;
 import com.alexm.MyNutRest.presentation.dto.response.NutResponseDTO;

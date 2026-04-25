@@ -1,4 +1,4 @@
-package com.alexm.MyNutRest.infrastructure.repository;
+package com.alexm.MyNutRest.domain.port;
 
 import java.util.List;
 

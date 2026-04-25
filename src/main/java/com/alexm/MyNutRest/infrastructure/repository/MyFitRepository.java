@@ -12,6 +12,7 @@ import com.alexm.MyNutRest.domain.model.WorkoutDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutExerciseResponseDomain;
 import com.alexm.MyNutRest.domain.model.WorkoutResponseDomain;
+import com.alexm.MyNutRest.domain.port.MyFitPort;
 import com.alexm.MyNutRest.infrastructure.entity.Exercise;
 import com.alexm.MyNutRest.infrastructure.entity.NutUser;
 import com.alexm.MyNutRest.infrastructure.entity.Program;

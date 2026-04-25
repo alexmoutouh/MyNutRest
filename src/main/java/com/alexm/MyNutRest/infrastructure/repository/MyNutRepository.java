@@ -8,6 +8,7 @@ import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
+import com.alexm.MyNutRest.domain.port.MyNutPort;
 import com.alexm.MyNutRest.infrastructure.entity.Nut;
 import com.alexm.MyNutRest.infrastructure.entity.NutUser;
 import com.alexm.MyNutRest.infrastructure.mapper.NutDomainMapper;
