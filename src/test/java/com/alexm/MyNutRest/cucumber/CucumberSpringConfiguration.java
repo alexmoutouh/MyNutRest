@@ -7,6 +7,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import com.alexm.MyNutRest.domain.service.MyFitServiceImpl;
+import com.alexm.MyNutRest.domain.service.MyNutScanServiceImpl;
 import com.alexm.MyNutRest.domain.service.MyNutServiceImpl;
 import com.alexm.MyNutRest.presentation.controller.MyFitController;
 import com.alexm.MyNutRest.presentation.controller.MyNutController;
@@ -23,6 +24,9 @@ public class CucumberSpringConfiguration {
 
 	@MockitoBean
 	MyFitServiceImpl myFitServiceImpl;
+
+	@MockitoBean
+	MyNutScanServiceImpl myNutScanServiceImpl;
 
 	@MockitoBean
 	ToolCallbackProvider myNutTools;

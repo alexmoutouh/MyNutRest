@@ -1,5 +1,7 @@
 package com.alexm.MyNutRest.presentation.controller;
 
+import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.MediaType;
@@ -8,18 +10,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.alexm.MyNutRest.domain.model.NutDomain;
 import com.alexm.MyNutRest.domain.model.NutResponseDomain;
+import com.alexm.MyNutRest.domain.model.NutScanResultDomain;
 import com.alexm.MyNutRest.domain.model.NutUserDomain;
 import com.alexm.MyNutRest.domain.model.NutUserResponseDomain;
+import com.alexm.MyNutRest.domain.port.MyNutScanService;
 import com.alexm.MyNutRest.domain.port.MyNutService;
 import com.alexm.MyNutRest.presentation.dto.request.NutDTO;
 import com.alexm.MyNutRest.presentation.dto.request.UserDTO;
 import com.alexm.MyNutRest.presentation.dto.response.NutResponseDTO;
+import com.alexm.MyNutRest.presentation.dto.response.NutScanResponseDTO;
 import com.alexm.MyNutRest.presentation.dto.response.NutUserResponseDTO;
 import com.alexm.MyNutRest.presentation.mapper.NutDTOMapper;
+import com.alexm.MyNutRest.presentation.mapper.NutScanDTOMapper;
 import com.alexm.MyNutRest.presentation.mapper.NutUserDTOMapper;
 import lombok.AllArgsConstructor;
 
@@ -29,12 +37,14 @@ import lombok.AllArgsConstructor;
 public class MyNutController {
 
 	private final MyNutService myNutService;
+	private final MyNutScanService myNutScanService;
 
 	@GetMapping(path = "user/id/{user-id}")
 	public Optional<NutUserResponseDTO> findUserById(@PathVariable(name = "user-id") Long userId) {
 		if (myNutService.findUserById(userId) == null) {
 			return Optional.empty();
 		}
+
 		return Optional.of(NutUserDTOMapper.toResponseDTO(myNutService.findUserById(userId)));
 	}
 
@@ -63,5 +73,14 @@ public class MyNutController {
 		NutDomain nutDomain = NutDTOMapper.toDomain(request);
 		NutResponseDomain nutResponseDomain = myNutService.addNutToUser(userId, nutDomain);
 		return NutDTOMapper.toResponseDTO(nutResponseDomain);
+	}
+
+	@PostMapping(path = "user/id/{user-id}/nut/scan", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public NutScanResponseDTO scanNutForUser(
+			@PathVariable(name = "user-id") Long userId,
+			@RequestParam("image") MultipartFile image,
+			@RequestParam("grams") BigDecimal grams) throws IOException {
+		NutScanResultDomain result = myNutScanService.scanAndSave(userId, image.getBytes(), grams);
+		return NutScanDTOMapper.toResponseDTO(result);
 	}
 }
